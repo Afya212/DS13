@@ -100,6 +100,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/list_traders,
 	/client/proc/add_trader,
 	/client/proc/remove_trader,
+	/client/proc/cmd_admin_radio,
 	/datum/admins/proc/sendFax
 )
 var/list/admin_verbs_ban = list(
@@ -230,7 +231,7 @@ var/list/admin_verbs_rejuv = list(
 	/client/proc/respawn_character
 	)
 
-//verbs which can be hidden - needs work
+//verbs which can be hidden
 var/list/admin_verbs_hideable = list(
 	/client/proc/edit_admin_permissions,
 	/client/proc/allow_character_respawn,
@@ -250,6 +251,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/change_human_appearance_self,
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
+	/client/proc/cmd_admin_radio,
 	/client/proc/makePAI,
 	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
