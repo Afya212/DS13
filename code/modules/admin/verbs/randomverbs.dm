@@ -803,17 +803,23 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, t)
 	feedback_add_details("admin_verb","ATTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_radio(mob/M as mob in SSmobs.mob_list)
+/client/proc/cmd_admin_radio()
 	set category = "Special Verbs"
 	set name = "Radio Say"
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/name =
-	var/channel = input("What radio channel should your message be on?") in list("Emergency", "Crew Transfer")
+	var/name = input(src,"Name:", "Radio messenger name") as text|null
+	var/msg = sanitize(input("Please enter a message state over radio","Outgoing message from [name]", ""))
+	if(!msg)
+		return
+	var/channel = input("What radio channel should your message be on?") as null|anything in radiochannels
 
-	log_and_message_admins("[key_name_admin(usr)] has sent an admin radio signal")
+	Broadcast_SimpleMessage(channel, channel, channel)
+	Broadcast_Message(channel, channel, channel)
+
+	log_and_message_admins("has sent an admin radio signal to [channel]")
 	feedback_add_details("admin_verb","RADIO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
